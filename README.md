@@ -6,7 +6,7 @@ First, run the development server:
 
 ```bash
 git clone https://github.com/ekovegeance/laravel-templates.git
-composer install && npm install
+composer install && npm install && npm run dev
 ```
 Configure your local environment
 ```bash
@@ -14,7 +14,7 @@ cp .env.local .env
 ```
 Migrate database
 ```bash
-php artisan migrate
+php artisan migrate --seed
 ```
 
 Open [http://localhost:8000](http://localhost:8000) with your browser to see the result.
