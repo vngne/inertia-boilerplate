@@ -163,7 +163,7 @@ export function Navbar() {
                                         onClick={() => setIsMenuOpen(false)}
                                     >
                                         {" "}
-                                        <Button className="w-fÌull justify-center">
+                                        <Button className="w-fÌull justify-center bg-red-500 hover:bg-red-600">
                                             Sign Up
                                         </Button>
                                     </Link>
