@@ -5,7 +5,7 @@
 First, run the development server:
 
 ```bash
-git clone https://github.com/ekovegeance/Fullstack-Nextjs-Templates.git
+git clone https://github.com/ekovegeance/laravel-templates.git
 composer install && npm install
 ```
 Configure your local environment
