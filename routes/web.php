@@ -7,7 +7,13 @@ use Inertia\Inertia;
 
 
 Route::get('/', function (){
-    return Inertia::render('home');
+    return Inertia::render('home', [
+        'canLogin' => Route::has('login'),
+        'canRegister' => Route::has('register'),
+        'laravelVersion' => Application::VERSION,
+        'appName' => config('app.name'),
+        'phpVersion' => PHP_VERSION,
+    ]);
 });
 
 Route::get('/welcome', function () {

@@ -1,34 +1,33 @@
-import { BackgroundGrid } from "@/components/home/background-grid";
-import RootLayout from "@/layout";
-import { Link } from "@inertiajs/react";
-import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
-import { Sparkle } from "lucide-react";
-import Hero from "@/components/home/hero";
+import CTA from "@/components/home/cta";
 import Features from "@/components/home/features";
-import CTA from "@/components/home/CTA";
+import Hero from "@/components/home/hero";
+import RootLayout from "@/layout";
+import { PageProps } from "@/types";
+import { Head, Link } from "@inertiajs/react";
 
-export default function Home() {
+export default function Home(props: PageProps) {
+    console.log("props", props,);
     return (
         <RootLayout>
-            <main>
-
-                {/* <Link href="https://github.com/ekovegeance/Fullstack-Nextjs-Templates/discussions/5">
-                    <Alert className="mx-auto mt-4 w-fit">
-                        <Sparkle className="w-4 h4" />
-                        <AlertTitle className="font-semibold text-orange-600">
-                            Got an idea?
-                        </AlertTitle>
-                        <AlertDescription>
-                            Let us know! Submit your feature requests
-                        </AlertDescription>
-                    </Alert>
-                </Link> */}
-                <Hero />
-                <Features/>
-                <CTA/>
-            </main>
-            <BackgroundGrid />
+            <>
+                <Head title="Welcome" />
+                <div className="">
+                    <img
+                        id="background"
+                        className="absolute -left-10  top-16 max-w-[877px]"
+                        src="https://laravel.com/assets/img/welcome/background.svg"
+                    />
+                    <div className="relative flex min-h-screen flex-col items-center justify-center selection:bg-[#FF2D20] selection:text-white">
+                        <div className="relative w-full max-w-2xl px-6 lg:max-w-7xl">
+                            <main>
+                                <Hero />
+                                <Features />
+                                <CTA/>
+                            </main>
+                        </div>
+                    </div>
+                </div>
+            </>
         </RootLayout>
-
     );
 }

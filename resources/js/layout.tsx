@@ -2,6 +2,7 @@ import {ReactNode} from "react";
 import { cn } from "./lib/utils";
 import { Navbar } from './components/home/navbar';
 import Footer from './components/home/footer';
+import { usePage } from "@inertiajs/react";
 
 export default function RootLayout({
     children,
@@ -17,7 +18,7 @@ export default function RootLayout({
           )}
         >
           <div>
-            {/* <Navbar /> */}
+            <Navbar/>
             <main className="px-4 py-6 pt-20 mx-auto max-w-7xl sm:px-6 lg:px-8">
               {children}
             </main>

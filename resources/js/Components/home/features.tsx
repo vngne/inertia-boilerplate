@@ -18,7 +18,7 @@ import {
       icon: <ShieldCheck className="w-10 h-10" />,
       title: "Secure Authentication",
       description:
-        "Login and registration system powered by Auth.js, ensuring reliable session management.",
+        "Login and registration system powered by Laravel Brezee, ensuring reliable session management.",
     },
     {
       icon: <UserRoundCog className="w-10 h-10" />,

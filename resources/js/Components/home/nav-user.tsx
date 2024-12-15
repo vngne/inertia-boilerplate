@@ -16,6 +16,7 @@ import {
     DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 import { Link } from "@inertiajs/react";
+import ResponsiveNavLink from "../ResponsiveNavLink";
 
 export function NavUser({
     user,
@@ -28,7 +29,6 @@ export function NavUser({
         image?: string;
     };
 }) {
-
     const displayName = user?.name || "Anonymous";
     const displayEmail = user?.email || "No email";
     const displayImage = user?.image || "/placeholder.svg?height=32&width=32";
@@ -104,12 +104,14 @@ export function NavUser({
                             <Link href="/dashboard/account">Account</Link>
                         </DropdownMenuItem>
                         <DropdownMenuSeparator />
-                        <DropdownMenuItem>
-                            <LogOut />
-                            <Button variant="ghost">
-                                Sign Out
-                            </Button>
-                        </DropdownMenuItem>
+                        <Link href={route("logout")} method="post">
+                            <DropdownMenuItem>
+                                <Button variant="ghost" className="text-red-600 hover:text-red-700 -ms-4">
+                                    <LogOut />
+                                    Logout
+                                </Button>
+                            </DropdownMenuItem>
+                        </Link>
                     </DropdownMenuContent>
                 </DropdownMenu>
             </div>

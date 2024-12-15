@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import * as React from "react";
 import { Link, usePage } from "@inertiajs/react";
@@ -20,10 +20,7 @@ const navLinks = [
 
 export function Navbar() {
     const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-    // const { data: session, status } = useSession();
-    // console.log(session?.user);
-
-    // const pathname = usePathname();
+    const auth = usePage().props.auth;
     const { url } = usePage();
 
     return (
@@ -36,7 +33,7 @@ export function Navbar() {
                                 href="/"
                                 className="text-xl font-bold text-gray-800"
                             >
-                                <div className="flex items-center justify-center rounded-lg aspect-square size-8 bg-sidebar-primary text-sidebar-primary-foreground">
+                                <div className="flex items-center justify-center text-white bg-red-500 rounded-lg aspect-square size-8">
                                     <Command className="size-4" />
                                 </div>
                             </Link>
@@ -59,10 +56,12 @@ export function Navbar() {
                         </div>
                     </div>
                     <div className="hidden sm:ml-6 sm:flex sm:items-center">
-                        {status === "authenticated" && session?.user ? (
+                        {auth.user ? (
                             <NavUser
                                 user={
-                                    session.user as {
+                                    auth.user as unknown as {
+                                        id: string;
+                                        username: string;
                                         name: string;
                                         email: string;
                                         image: string;
@@ -80,7 +79,7 @@ export function Navbar() {
                                     </Button>
                                 </Link>
                                 <Link href="/register">
-                                    <Button className="justify-center w-full">
+                                    <Button className="justify-center w-full bg-red-500 hover:bg-red-600">
                                         Sign Up
                                     </Button>
                                 </Link>
@@ -131,11 +130,11 @@ export function Navbar() {
                     </div>
                     <div className="pt-4 pb-3 border-t border-gray-200">
                         <div className="flex items-center gap-2 px-4">
-                            {status === "authenticated" && session?.user ? (
+                            {auth.user ? (
                                 <div>
                                     <NavUser
                                         user={
-                                            session.user as {
+                                            auth.user as unknown as {
                                                 id: string;
                                                 username: string;
                                                 name: string;
@@ -177,3 +176,4 @@ export function Navbar() {
         </nav>
     );
 }
+

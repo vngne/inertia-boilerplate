@@ -10,7 +10,7 @@ export default function Hero() {
                 <h1 className="text-5xl/[1.1] font-extrabold md:text-5xl lg:text-6xl lg:leading-[1.1] bg-clip-text text-transparent bg-gradient-to-r from-red-600 to-red-500">
                     Fullstack Laravel Templates
                 </h1>
-                <p className="max-w-[750px] text-lg text-muted-foreground sm:text-xl">
+                <p className="max-w-[750px] text-lg text-zinc-950 sm:text-xl">
                     This modern Full Stack{" "}
                     <Link
                         href="https://laravel.com/docs/11.x/frontend#inertia"
@@ -29,7 +29,7 @@ export default function Hero() {
                     ,{" "}
                     <Link
                         href="https://laravel.com/docs/11.x/starter-kits#laravel-breeze"
-                        className="font-semibold text-orange-400"
+                        className="font-semibold text-orange-600"
                     >
                         Laravel Brezze
                     </Link>
@@ -50,9 +50,9 @@ export default function Hero() {
             <div>
                 <Button size="lg" className="bg-red-500 hover:bg-red-600">
                     <FileCode2 />
-                    <Link href="https://github.com/ekovegeance/laravel-templates">
+                    <a href="https://github.com/ekovegeance/laravel-templates">
                         Get Started
-                    </Link>
+                    </a>
                 </Button>
             </div>
         </section>
