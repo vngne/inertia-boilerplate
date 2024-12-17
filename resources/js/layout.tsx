@@ -2,7 +2,6 @@ import {ReactNode} from "react";
 import { cn } from "./lib/utils";
 import { Navbar } from './components/home/navbar';
 import Footer from './components/home/footer';
-import { usePage } from "@inertiajs/react";
 
 export default function RootLayout({
     children,

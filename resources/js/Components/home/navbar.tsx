@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import * as React from "react";
 import { Link, usePage } from "@inertiajs/react";
@@ -79,7 +79,7 @@ export function Navbar() {
                                     </Button>
                                 </Link>
                                 <Link href="/register">
-                                    <Button className="justify-center w-full bg-red-500 hover:bg-red-600">
+                                    <Button className="justify-center w-full">
                                         Sign Up
                                     </Button>
                                 </Link>
@@ -163,7 +163,7 @@ export function Navbar() {
                                         onClick={() => setIsMenuOpen(false)}
                                     >
                                         {" "}
-                                        <Button className="w-fÌull justify-center bg-red-500 hover:bg-red-600">
+                                        <Button className="w-fÌull justify-center">
                                             Sign Up
                                         </Button>
                                     </Link>
@@ -176,4 +176,3 @@ export function Navbar() {
         </nav>
     );
 }
-

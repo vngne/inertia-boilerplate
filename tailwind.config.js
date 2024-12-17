@@ -13,12 +13,15 @@ export default {
 
     theme: {
     	extend: {
+            focus: {ring: false,
+            border: false},
     		fontFamily: {
     			sans: [
     				'Figtree',
                     ...defaultTheme.fontFamily.sans
                 ]
     		},
+
     		borderRadius: {
     			lg: 'var(--radius)',
     			md: 'calc(var(--radius) - 2px)',

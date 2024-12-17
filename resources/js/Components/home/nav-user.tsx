@@ -16,7 +16,6 @@ import {
     DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 import { Link } from "@inertiajs/react";
-import ResponsiveNavLink from "../ResponsiveNavLink";
 
 export function NavUser({
     user,
@@ -106,7 +105,7 @@ export function NavUser({
                         <DropdownMenuSeparator />
                         <Link href={route("logout")} method="post">
                             <DropdownMenuItem>
-                                <Button variant="ghost" className="text-red-600 hover:text-red-700 -ms-4">
+                                <Button variant="ghost" className="-ms-4 text-destructive hover:text-destructive">
                                     <LogOut />
                                     Logout
                                 </Button>

@@ -48,7 +48,7 @@ export default function Hero() {
             </div>
 
             <div>
-                <Button size="lg" className="bg-red-500 hover:bg-red-600">
+                <Button size="lg">
                     <FileCode2 />
                     <a href="https://github.com/ekovegeance/laravel-templates">
                         Get Started
