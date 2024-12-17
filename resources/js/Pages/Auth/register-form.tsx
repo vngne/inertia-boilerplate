@@ -3,7 +3,6 @@ import SubmitButton from "@/components/stocks/submit-button";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import AuthLayout from "@/layouts/auth-layout";
 import { Head, Link, useForm } from "@inertiajs/react";
 import { TriangleAlert } from "lucide-react";
 import { FormEventHandler } from "react";
@@ -24,7 +23,7 @@ export default function RegisterForm() {
         });
     };
     return (
-        <AuthLayout>
+        <div>
             <Head title="Register" />
             <div className="grid min-h-screen grid-cols-1 lg:grid-cols-2">
                 <div className="flex items-center justify-center px-8 py-12 md:px-12">
@@ -166,6 +165,6 @@ export default function RegisterForm() {
                 </div>
                 <RegisterSide />
             </div>
-        </AuthLayout>
+        </div>
     );
 }

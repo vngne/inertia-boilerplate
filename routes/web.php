@@ -5,6 +5,10 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
+// Route::get('/login2', function (){
+//     return Inertia::render('auth/login-form');
+// });
+Route::inertia('/login2', 'auth/login-form');
 
 Route::get('/', function (){
     return Inertia::render('home', [

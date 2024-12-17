@@ -18,7 +18,7 @@ class AuthenticatedSessionController extends Controller
      */
     public function create(): Response
     {
-        return Inertia::render('auth/login', [
+        return Inertia::render('auth/login-form', [
             'canResetPassword' => Route::has('password.request'),
             'status' => session('status'),
         ]);
