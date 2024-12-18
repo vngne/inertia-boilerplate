@@ -1,56 +1,71 @@
-import InputError from '@/components/InputError';
-import PrimaryButton from '@/components/PrimaryButton';
-import TextInput from '@/components/TextInput';
-import GuestLayout from '@/layouts/GuestLayout';
-import { Head, useForm } from '@inertiajs/react';
-import { FormEventHandler } from 'react';
+import { FormEventHandler } from "react";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardFooter,
+    CardHeader,
+    CardTitle,
+} from "@/components/ui/card";
+import { AlertCircle, CheckCircle2 } from "lucide-react";
+import SubmitButton from "@/components/stocks/submit-button";
+import { Head, useForm } from "@inertiajs/react";
 
-export default function ForgotPassword({ status }: { status?: string }) {
+export default function ForgotPassword() {
     const { data, setData, post, processing, errors } = useForm({
-        email: '',
+        email: "",
     });
 
     const submit: FormEventHandler = (e) => {
         e.preventDefault();
-
-        post(route('password.email'));
+        post(route("password.email"));
     };
 
     return (
-        <GuestLayout>
-            <Head title="Forgot Password" />
-
-            <div className="mb-4 text-sm text-gray-600">
-                Forgot your password? No problem. Just let us know your email
-                address and we will email you a password reset link that will
-                allow you to choose a new one.
-            </div>
-
-            {status && (
-                <div className="mb-4 text-sm font-medium text-green-600">
-                    {status}
-                </div>
-            )}
-
-            <form onSubmit={submit}>
-                <TextInput
-                    id="email"
-                    type="email"
-                    name="email"
-                    value={data.email}
-                    className="mt-1 block w-full"
-                    isFocused={true}
-                    onChange={(e) => setData('email', e.target.value)}
-                />
-
-                <InputError message={errors.email} className="mt-2" />
-
-                <div className="mt-4 flex items-center justify-end">
-                    <PrimaryButton className="ms-4" disabled={processing}>
-                        Email Password Reset Link
-                    </PrimaryButton>
-                </div>
-            </form>
-        </GuestLayout>
+        <div className="flex items-center justify-center min-h-screen white">
+            <Head title="Forgot Password"/>
+            <Card className="w-full max-w-md">
+                <CardHeader>
+                    <CardTitle>Forgot Password</CardTitle>
+                    <CardDescription>
+                        Enter your email to receive a password reset link.
+                    </CardDescription>
+                </CardHeader>
+                <form onSubmit={submit}>
+                    <CardContent className="space-y-4">
+                        <div className="space-y-2">
+                            <Label htmlFor="email">Email</Label>
+                            <Input
+                                id="email"
+                                name="email"
+                                type="email"
+                                placeholder="Enter your email"
+                                value={data.email}
+                                onChange={(e) =>
+                                    setData("email", e.target.value)
+                                }
+                            />
+                        </div>
+                        {errors.email && (
+                            <div className="flex items-center space-x-2 text-sm text-red-500">
+                                <AlertCircle size={20} />
+                                <span>
+                                    {errors.email}
+                                </span>
+                            </div>
+                        )}
+                    </CardContent>
+                    <CardFooter>
+                        <SubmitButton
+                            pending={processing}
+                            submitting="Sending"
+                            submit="Send Reset Link"
+                        />
+                    </CardFooter>
+                </form>
+            </Card>
+        </div>
     );
 }

@@ -8,7 +8,7 @@ use Inertia\Inertia;
 // Route::get('/login2', function (){
 //     return Inertia::render('auth/login-form');
 // });
-Route::inertia('/login2', 'auth/login-form');
+// Route::inertia('/forgot', 'auth/forgot');
 
 Route::get('/', function (){
     return Inertia::render('home', [
