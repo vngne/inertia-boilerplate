@@ -45,17 +45,6 @@ export default function LoginForm({
                 </CardHeader>
                 <CardContent>
                     <form onSubmit={submit}>
-                        {errors.email ? (
-                            <Alert variant="destructive" className="my-3">
-                                <TriangleAlert />
-                                <AlertTitle className="font-semibold">
-                                    {errors.email}
-                                </AlertTitle>
-                                <AlertDescription>
-                                    Account already use by other provider
-                                </AlertDescription>
-                            </Alert>
-                        ) : null}
                         {errors.email && (
                             <Alert variant="destructive" className="my-3">
                                 <TriangleAlert />
