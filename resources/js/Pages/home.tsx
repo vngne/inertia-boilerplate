@@ -3,10 +3,10 @@ import Features from "@/components/home/features";
 import Hero from "@/components/home/hero";
 import RootLayout from "@/layout";
 import { PageProps } from "@/types";
-import { Head, Link } from "@inertiajs/react";
+import { Head } from "@inertiajs/react";
 
 export default function Home(props: PageProps) {
-    console.log("props", props,);
+    console.log("props", props);
     return (
         <RootLayout>
             <>
@@ -22,7 +22,7 @@ export default function Home(props: PageProps) {
                             <main>
                                 <Hero />
                                 <Features />
-                                <CTA/>
+                                <CTA />
                             </main>
                         </div>
                     </div>

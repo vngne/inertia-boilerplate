@@ -1,9 +1,6 @@
-"use client";
-
 import * as React from "react";
 import { Link, usePage } from "@inertiajs/react";
 import { Command, Menu, X } from "lucide-react";
-import { Suspense } from "react";
 import { Button } from "@/components/ui/button";
 import { NavUser } from "@/components/home/nav-user";
 // import { usePathname } from "next/navigation";
@@ -33,7 +30,7 @@ export function Navbar() {
                                 href="/"
                                 className="text-xl font-bold text-gray-800"
                             >
-                                <div className="flex items-center justify-center text-white bg-red-500 rounded-lg aspect-square size-8">
+                                <div className="flex items-center justify-center rounded-lg text-primary-foreground bg-primary aspect-square size-8">
                                     <Command className="size-4" />
                                 </div>
                             </Link>

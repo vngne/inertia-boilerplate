@@ -1,53 +1,58 @@
 import {
-    UserCog,
+    BadgeCheck,
     ChevronsUpDown,
     LayoutDashboard,
     LogOut,
     User,
 } from "lucide-react";
+
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "../ui/button";
 import {
     DropdownMenu,
     DropdownMenuContent,
+    DropdownMenuGroup,
     DropdownMenuItem,
     DropdownMenuLabel,
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import {
+    SidebarMenu,
+    SidebarMenuButton,
+    SidebarMenuItem,
+    useSidebar,
+} from "@/components/ui/sidebar";
+import { Button } from "../ui/button";
 import { Link } from "@inertiajs/react";
 
 export function NavUser({
     user,
 }: {
     user: {
-        id?: string;
-        username?: string;
-        name?: string;
-        email?: string;
-        image?: string;
+        id: string;
+        username: string;
+        name: string;
+        email: string;
+        image: string;
     };
 }) {
-    const displayName = user?.name || "Anonymous";
-    const displayEmail = user?.email || "No email";
-    const displayImage = user?.image || "/placeholder.svg?height=32&width=32";
-
+    const { isMobile } = useSidebar();
     return (
-        <div>
-            <div className=" sm:ml-6 sm:flex sm:items-center">
+        <SidebarMenu>
+            <SidebarMenuItem>
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>
-                        <Button
-                            variant="ghost"
-                            className="relative w-full h-12 rounded-lg"
+                        <SidebarMenuButton
+                            size="lg"
+                            className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
                         >
                             <Avatar className="w-8 h-8 rounded-lg">
                                 <AvatarImage
-                                    src={displayImage}
-                                    alt={displayName}
+                                    src={user?.image}
+                                    alt={user?.name}
                                 />
                                 <AvatarFallback className="rounded-lg">
-                                    {displayName.slice(0, 2).toUpperCase()}
+                                    {user?.name.slice(0, 2).toUpperCase()}
                                 </AvatarFallback>
                             </Avatar>
                             <div className="grid flex-1 text-sm leading-tight text-left">
@@ -59,61 +64,67 @@ export function NavUser({
                                 </span>
                             </div>
                             <ChevronsUpDown className="ml-auto size-4" />
-                        </Button>
+                        </SidebarMenuButton>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent
-                        className="w-56 ms-4"
+                        className="w-[--radix-dropdown-menu-trigger-width] min-w-56 rounded-lg"
+                        side={isMobile ? "bottom" : "right"}
                         align="end"
-                        forceMount
+                        sideOffset={4}
                     >
-                        <DropdownMenuLabel className="font-normal">
+                        <DropdownMenuLabel className="p-0 font-normal">
                             <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
                                 <Avatar className="w-8 h-8 rounded-lg">
                                     <AvatarImage
-                                        src={displayImage}
-                                        alt={displayName}
+                                        src={user?.image}
+                                        alt={user?.name}
                                     />
                                     <AvatarFallback className="rounded-lg">
-                                        {displayName.slice(0, 2).toUpperCase()}
+                                        {user?.name.slice(0, 2).toUpperCase()}
                                     </AvatarFallback>
                                 </Avatar>
                                 <div className="grid flex-1 text-sm leading-tight text-left">
                                     <span className="font-semibold truncate">
-                                        {displayName}
+                                        {user?.name}
                                     </span>
                                     <span className="text-xs truncate">
-                                        {displayEmail}
+                                        {user?.email}
                                     </span>
                                 </div>
                             </div>
                         </DropdownMenuLabel>
                         <DropdownMenuSeparator />
-                        <DropdownMenuItem>
-                            <LayoutDashboard />
-                            <Link href="/dashboard">Dashboard</Link>
-                        </DropdownMenuItem>
-                        <DropdownMenuItem asChild className="cursor-pointer ">
-                            <Link href={`users/${user.username}`}>
+                        <DropdownMenuGroup>
+                            <DropdownMenuItem>
+                                <LayoutDashboard />
+                                Dashboard
+                            </DropdownMenuItem>
+                            <DropdownMenuItem>
                                 <User />
-                                Profile
-                            </Link>
-                        </DropdownMenuItem>
-                        <DropdownMenuItem>
-                            <UserCog />
-                            <Link href="/dashboard/account">Account</Link>
-                        </DropdownMenuItem>
+                                <Link href={`/users/${user?.username}`}>
+                                    Profile
+                                </Link>
+                            </DropdownMenuItem>
+                            <DropdownMenuItem>
+                                <BadgeCheck />
+                                <Link href="/dashboard/account">Account</Link>
+                            </DropdownMenuItem>
+                        </DropdownMenuGroup>
                         <DropdownMenuSeparator />
                         <Link href={route("logout")} method="post">
                             <DropdownMenuItem>
-                                <Button variant="ghost" className="-ms-4 text-destructive hover:text-destructive">
+                                <Button
+                                    variant="ghost"
+                                    className="-ms-4 text-destructive hover:text-destructive"
+                                >
                                     <LogOut />
-                                    Logout
+                                    Log Out
                                 </Button>
                             </DropdownMenuItem>
                         </Link>
                     </DropdownMenuContent>
                 </DropdownMenu>
-            </div>
-        </div>
+            </SidebarMenuItem>
+        </SidebarMenu>
     );
 }
