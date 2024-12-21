@@ -34,7 +34,7 @@ export default function VerifyEmail({ status }: { status?: string }) {
                         will gladly send you another.
                     </CardDescription>
                     {status === "verification-link-sent" && (
-                        <Alert>
+                        <Alert className="text-green-600">
                             A new verification link has been sent to the email
                             address you provided during registration.
                         </Alert>
