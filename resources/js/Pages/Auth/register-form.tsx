@@ -10,6 +10,7 @@ import { FormEventHandler } from "react";
 export default function RegisterForm() {
     const { data, setData, post, processing, errors, reset } = useForm({
         name: "",
+        username: "",
         email: "",
         password: "",
         password_confirmation: "",
@@ -70,6 +71,26 @@ export default function RegisterForm() {
                                         {errors.name && (
                                             <Label className="text-red-500">
                                                 {errors.name}
+                                            </Label>
+                                        )}
+                                    </div>
+                                    <div className="grid gap-2">
+                                        <Label htmlFor="username">Username</Label>
+                                        <Input
+                                            id="username"
+                                            name="username"
+                                            type="text"
+                                            placeholder="johndoe"
+                                            value={data.username}
+                                            autoComplete="username"
+                                            onChange={(e) =>
+                                                setData("username", e.target.value)
+                                            }
+                                            required
+                                        />
+                                        {errors.username && (
+                                            <Label className="text-red-500">
+                                                {errors.username}
                                             </Label>
                                         )}
                                     </div>
