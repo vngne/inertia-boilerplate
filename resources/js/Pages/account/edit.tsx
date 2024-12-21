@@ -43,7 +43,6 @@ export default function Edit({ mustVerifyEmail, status }: PageProps<{ mustVerify
                             <UpdateAccountInformation
                                 mustVerifyEmail={mustVerifyEmail}
                                 status={status}
-                                className="max-w-xl"
                             />
                             <UpdatePasswordForm/>
                             <DeleteUserForm/>

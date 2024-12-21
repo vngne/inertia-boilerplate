@@ -18,17 +18,16 @@ import { CircleCheck } from "lucide-react";
 export default function UpdateAccountInformation({
     mustVerifyEmail,
     status,
-    className = "",
 }: {
     mustVerifyEmail: boolean;
     status?: string;
-    className?: string;
 }) {
     const user = usePage().props.auth.user;
 
     const { data, setData, patch, errors, processing, recentlySuccessful } =
         useForm({
             name: user.name,
+            username: user.username,
             email: user.email,
         });
 
@@ -78,6 +77,25 @@ export default function UpdateAccountInformation({
                                 {errors.name && (
                                     <Label className="text-sm text-destructive">
                                         {errors.name}
+                                    </Label>
+                                )}
+                            </div>
+                            <div>
+                                <Label>Username</Label>
+                                <Input
+                                    id="username"
+                                    type="text"
+                                    name="username"
+                                    value={data.username}
+                                    onChange={(e) =>
+                                        setData("username", e.target.value)
+                                    }
+                                    required
+                                    autoComplete="username"
+                                />
+                                {errors.username && (
+                                    <Label className="text-sm text-destructive">
+                                        {errors.username}
                                     </Label>
                                 )}
                             </div>

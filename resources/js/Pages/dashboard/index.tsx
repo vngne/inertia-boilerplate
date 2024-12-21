@@ -9,7 +9,7 @@ import { Card, CardTitle, CardHeader, CardContent } from '@/components/ui/card';
 import { Head } from "@inertiajs/react";
 
 
-export default function Dashborad() {
+export default function Dashboard() {
   return (
     <SidebarProvider>
       <AppSidebar />
