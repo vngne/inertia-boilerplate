@@ -33,7 +33,7 @@ Route::get('/welcome', function () {
 
 // Dashboard
 Route::get('/dashboard', function () {
-    return Inertia::render('dashboard/dashboard');
+    return Inertia::render('dashboard/index');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 // Account
