@@ -4,10 +4,11 @@ import { User } from "@/types/index";
 import RootLayout from "@/layout";
 
 export default function Users({ users }: { users: User[] }) {
+    console.log(users);
     return (
         <RootLayout>
             <Head title="Users" />
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
                 {users.map((user) => (
                     <Link href={`/users/${user?.username}`} key={user.id}>
                         <UserCard
