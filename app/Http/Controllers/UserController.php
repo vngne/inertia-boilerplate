@@ -21,6 +21,9 @@ class UserController extends Controller
         ]);
     }
 
+    /**
+     * Display the user's profile
+     */
     public function show(User $user)
     {
         return Inertia::render('users/show', [
