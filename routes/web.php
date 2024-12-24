@@ -1,10 +1,10 @@
 <?php
 
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\UserController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-use App\Http\Controllers\UserController;
 
 // Route::get('/login2', function (){
 //     return Inertia::render('auth/login-form');
@@ -45,7 +45,8 @@ Route::middleware('auth')->group(function () {
 });
 
 // Users
+// Route::resource('users', UserController::class);
 Route::get('/users', [UserController::class, 'index'])->name('users.index');
-Route::get('users/{user:username}',[UserController::class, 'show'])->name('users.show');
+Route::get('users/{user:username}', [UserController::class, 'show'])->name('users.show');
 
 require __DIR__.'/auth.php';

@@ -17,7 +17,7 @@ class UserController extends Controller
             ->get();
 
         return Inertia::render('users/index', [
-            'users' => $users
+            'users' => $users,
         ]);
     }
 
@@ -27,7 +27,7 @@ class UserController extends Controller
     public function show(User $user)
     {
         return Inertia::render('users/show', [
-            'user' => $user
+            'user' => $user,
         ]);
     }
 }
