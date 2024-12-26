@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { FileUser, Heart, MessageCircle } from "lucide-react";
-import { Link } from "@inertiajs/react";
+import { Head, Link } from "@inertiajs/react";
 import { RiVerifiedBadgeFill } from "@remixicon/react";
 import { User } from "@/types";
 import RootLayout from "@/layout";
@@ -11,6 +11,7 @@ import RootLayout from "@/layout";
 export default function ShowUser({ user }: { user: User }) {
     return (
         <RootLayout>
+            <Head title={user.name}/>
         <div className="min-h-screen rounded-lg md:border">
             <div className="relative h-64 bg-gray-300">
                 <img
@@ -121,7 +122,7 @@ export default function ShowUser({ user }: { user: User }) {
                                         value="posts"
                                         className="space-y-4"
                                     >
-                                        {/* {user.posts.map((post) => (
+                                        {user.posts.map((post) => (
                       <Card key={post.id} className="hover:bg-zinc-50">
                         <Link key={post.id} href={`/posts/${post.slug}`}>
                           <CardHeader>
@@ -141,7 +142,7 @@ export default function ShowUser({ user }: { user: User }) {
                                     {user?.name}
                                   </p>
                                   <p className="text-xs text-gray-500">
-                                    {new Date(post.createdAt).toLocaleString()}
+                                    {new Date(post.created_at).toLocaleString()}
                                   </p>
                                 </div>
                               </div>
@@ -165,7 +166,7 @@ export default function ShowUser({ user }: { user: User }) {
                           </CardContent>
                         </Link>
                       </Card>
-                    ))} */}
+                    ))}
                                     </TabsContent>
                                     <TabsContent value="media">
                                         <div className="grid grid-cols-3 gap-4">

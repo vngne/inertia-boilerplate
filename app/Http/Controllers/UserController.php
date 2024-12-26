@@ -26,6 +26,9 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
+        // Load the user's posts
+        $user->load('posts');
+
         return Inertia::render('users/show', [
             'user' => $user,
         ]);

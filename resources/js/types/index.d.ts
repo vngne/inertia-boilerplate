@@ -8,6 +8,19 @@ export interface User {
     image?: string;
     created_at: string;
     updated_at: string;
+    posts: Post[];
+}
+
+export interface Post {
+    id: number;
+    user_id: number;
+    title: string;
+    content: string;
+    slug: string;
+    created_at: string;
+    updated_at: string;
+    user: User;
+
 }
 
 export type PageProps<
@@ -17,3 +30,4 @@ export type PageProps<
         user: User;
     };
 };
+

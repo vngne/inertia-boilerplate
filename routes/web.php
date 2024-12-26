@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -49,4 +50,14 @@ Route::middleware('auth')->group(function () {
 Route::get('/users', [UserController::class, 'index'])->name('users.index');
 Route::get('users/{user:username}', [UserController::class, 'show'])->name('users.show');
 
-require __DIR__.'/auth.php';
+// Posts
+Route::middleware('auth')->group(function () {
+    Route::resource('posts', PostController::class)->except('show', 'index', 'edit');
+});
+Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
+Route::get('/posts/{post:slug}', [PostController::class, 'show'])->name('posts.show');
+Route::get('/posts/{post:slug}/edit', [PostController::class, 'edit'])->name('posts.edit');
+
+
+
+require __DIR__ . '/auth.php';

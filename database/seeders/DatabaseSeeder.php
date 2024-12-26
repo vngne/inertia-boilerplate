@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Post;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -14,9 +15,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory(10)->create();
-
-        User::factory()->create([
+        User::create([
+            'id' => 1,
             'name' => 'Eko Saputra',
             'username' => 'ekovegeance',
             'email' => 'me@ekovegeance.com',
@@ -24,5 +24,14 @@ class DatabaseSeeder extends Seeder
             'image' => 'https://avatars.githubusercontent.com/u/26839751?v=4',
             'password' => Hash::make('ekovegeance'),
         ]);
+        // User::factory(10)->create();
+        // Post::factory(20)->create();
+        $users = User::factory(10)->create();
+        Post::factory(20)->make()->each(function ($post) use ($users) {
+            $post->user_id = $users->random()->id;
+            $post->save();
+        });
+
+
     }
 }
