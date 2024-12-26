@@ -86,7 +86,7 @@ export default function Posts({ posts }: { posts: Post[] }) {
                                                     Edit
                                                 </Button>
                                             </Link>
-                                            <DeletePost slug={post.slug}/>
+                                            <DeletePost post={post.slug}/>
                                         </div>
                                     )}
                                 </div>
