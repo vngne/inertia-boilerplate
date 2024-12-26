@@ -11,18 +11,24 @@ import RootLayout from "@/layout";
 import { Post } from "@/types";
 import { Head, Link, usePage } from "@inertiajs/react";
 import { ArrowRightIcon, CalendarIcon } from "lucide-react";
+import { DeletePost } from "./delete-post";
 
 export default function Posts({ posts }: { posts: Post[] }) {
     const auth = usePage().props.auth;
     console.log(posts);
+
     return (
         <RootLayout>
-            <Head title="Posts"/>
+            <Head title="Posts" />
             <div>
                 <h1 className="mb-8 text-3xl font-bold">
                     <div className="flex flex-row items-center justify-start gap-4">
                         All Post ({posts.length})
-                        {auth.user && <Link href="/posts/create"><Button>Create</Button></Link>}
+                        {auth.user && (
+                            <Link href="/posts/create">
+                                <Button>Create</Button>
+                            </Link>
+                        )}
                     </div>
                 </h1>
                 <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -62,22 +68,27 @@ export default function Posts({ posts }: { posts: Post[] }) {
                                         <span>{post.user.name}</span>
                                     </div>
                                 </div>
-                                <div className="flex flex-row items-center gap-2">
-                                <Link href={`/posts/${post.slug}`}>
-                                    <Button
-                                        variant="secondary"
-                                        className="w-full"
-                                    >
-                                        Read more <ArrowRightIcon />
-                                    </Button>
-                                </Link>
-                                {auth.user?.id === post.user_id && (
-                                    <Link href={`/posts/${post.slug}/edit`}>
-                                        <Button className="w-full">
-                                            Edit
+                                <div className="grid items-center grid-cols-1 gap-1 md:grid-cols-2">
+                                    <Link href={`/posts/${post.slug}`}>
+                                        <Button
+                                            variant="secondary"
+                                            className="w-full"
+                                        >
+                                            Read more <ArrowRightIcon />
                                         </Button>
                                     </Link>
-                                )}
+                                    {auth.user?.id === post.user_id && (
+                                        <div className="flex gap-1">
+                                            <Link
+                                                href={`/posts/${post.slug}/edit`}
+                                            >
+                                                <Button variant="secondary" className="w-full">
+                                                    Edit
+                                                </Button>
+                                            </Link>
+                                            <DeletePost slug={post.slug}/>
+                                        </div>
+                                    )}
                                 </div>
                             </CardFooter>
                         </Card>

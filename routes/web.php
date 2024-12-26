@@ -52,12 +52,11 @@ Route::get('users/{user:username}', [UserController::class, 'show'])->name('user
 
 // Posts
 Route::middleware('auth')->group(function () {
-    Route::resource('posts', PostController::class)->except('show', 'index', 'edit');
+    Route::resource('posts', PostController::class)->except('show', 'index', 'edit', 'destroy');
 });
 Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
 Route::get('/posts/{post:slug}', [PostController::class, 'show'])->name('posts.show');
 Route::get('/posts/{post:slug}/edit', [PostController::class, 'edit'])->name('posts.edit');
+Route::delete('/posts/{post:slug}', [PostController::class, 'destroy'])->name('posts.destroy');
 
-
-
-require __DIR__ . '/auth.php';
+require __DIR__.'/auth.php';

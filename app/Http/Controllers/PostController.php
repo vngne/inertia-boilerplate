@@ -49,7 +49,6 @@ class PostController extends Controller
             'user_id' => auth('web')->id(),
         ]);
 
-
         return redirect()->route('posts.index');
     }
 
@@ -66,7 +65,6 @@ class PostController extends Controller
             'post' => $post,
         ]);
 
-
     }
 
     /**
@@ -78,6 +76,7 @@ class PostController extends Controller
         if ($post->user_id !== auth('web')->id()) {
             abort(403, 'Unauthorized');
         }
+
         return Inertia::render('posts/edit-post-form', [
             'post' => $post,
         ]);
