@@ -1,5 +1,5 @@
+import { useState, FormEventHandler } from "react";
 import { Button } from "@/components/ui/button";
-import { router } from "@inertiajs/react";
 import {
     Dialog,
     DialogContent,
@@ -8,58 +8,81 @@ import {
     DialogHeader,
     DialogTitle,
 } from "@/components/ui/dialog";
-import { useState } from "react";
+import { useForm } from "@inertiajs/react";
 import { toast } from "sonner";
-import { CircleCheck } from "lucide-react";
+import { Post } from "@/types";
 
-export function DeletePost({ post }: { post: string }) {
+export default function DeletePost({ post,  }: { post: string }) {
+    const [confirmingPostDeletion, setConfirmingPostDeletion] = useState(false);
+    const [selectedPost, setSelectedPost] = useState<string | null>(null);
+    const [openDropdownId, setOpenDropdownId] = useState<string | null>(null);
 
-    console.log('log router',router)
-    const [confirmingPostDeleteion, setConfirmingPostDeletion] =
-        useState(false);
-
-    const confirmPostDeletion = () => {
+    const { delete: destroy, processing, reset, clearErrors } = useForm();
+    const confirmPostDeletion = (post: string) => {
+        setSelectedPost(post);
         setConfirmingPostDeletion(true);
+        setOpenDropdownId(null);
     };
 
-    const detelePost = () => {
-        router.delete(`/posts/${post}`, {
+    const deletePost: FormEventHandler = (e) => {
+        e.preventDefault();
+
+        destroy(route("posts.destroy", { post: post }), {
+            preserveScroll: true,
             onSuccess: () => {
                 closeModal();
-                toast.message("Success", {
-                    description: "Your post success deletion",
-                    duration: 10000,
-                    icon: <CircleCheck/>
-                })
-            }
+                toast.success("Post deleted successfully");
+                 setSelectedPost(null);
+                // onClose?.();
+            },
+            onFinish: () => reset(),
         });
     };
 
     const closeModal = () => {
         setConfirmingPostDeletion(false);
+        setOpenDropdownId(null);
+        clearErrors();
+        reset();
+        // onClose?.();
     };
 
     return (
-        <div>
-            <Button variant="destructive" onClick={confirmPostDeletion}>
+        <>
+            <Button variant="destructive" onClick={() => {confirmPostDeletion(post)}}>
                 Delete Post
             </Button>
 
-            <Dialog open={confirmingPostDeleteion} onOpenChange={closeModal}>
+            <Dialog open={confirmingPostDeletion} onOpenChange={setConfirmingPostDeletion}>
                 <DialogContent>
-                    <DialogHeader>
-                        <DialogTitle>Are you absolutely sure?</DialogTitle>
-                        <DialogDescription>
-                            This action cannot be undone. This permanently
-                            delete your post
-                        </DialogDescription>
-                    </DialogHeader>
-                    <DialogFooter>
-                        <Button variant="destructive" onClick={detelePost}>Delete</Button>
-                    </DialogFooter>
+                    <form onSubmit={deletePost}>
+                        <DialogHeader>
+                            <DialogTitle>Are you absolutely sure?</DialogTitle>
+                            <DialogDescription>
+                                This action cannot be undone. This will
+                                permanently delete the post.
+                            </DialogDescription>
+                        </DialogHeader>
+                        <DialogFooter>
+                            <Button
+                                type="button"
+                                variant="outline"
+                                onClick={closeModal}
+                                disabled={processing}
+                            >
+                                Cancel
+                            </Button>
+                            <Button
+                                type="submit"
+                                variant="destructive"
+                                disabled={processing}
+                            >
+                                Delete Post
+                            </Button>
+                        </DialogFooter>
+                    </form>
                 </DialogContent>
             </Dialog>
-
-        </div>
+        </>
     );
 }

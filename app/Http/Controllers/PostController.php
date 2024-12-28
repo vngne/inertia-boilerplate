@@ -14,10 +14,24 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::with('user')->latest()->get();
+        $posts = Post::with('user')
+            ->latest()
+            ->get();
 
         return Inertia::render('posts/index', [
             'posts' => $posts,
+        ]);
+    }
+
+
+    public function dashboardPosts()
+    {
+        $posts = Post::with('user')
+            ->latest()
+            ->get();
+
+        return Inertia::render('dashboard/posts', [
+            'posts' => $posts
         ]);
     }
 
@@ -64,7 +78,6 @@ class PostController extends Controller
         return Inertia::render('posts/show', [
             'post' => $post,
         ]);
-
     }
 
     /**

@@ -146,7 +146,7 @@ const data = {
     },
     {
       name: "Account Settings",
-      url: "/account",
+      url: "/dashboard/account",
       icon: UserCog,
     },
   ],

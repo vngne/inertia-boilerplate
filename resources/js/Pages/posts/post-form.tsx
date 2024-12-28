@@ -2,16 +2,12 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
-// import { createPost } from "@/actions/post.actions";
 import SubmitButton from "@/components/stocks/submit-button";
 import RootLayout from "@/layout";
 import { Head, useForm } from "@inertiajs/react";
 import { FormEventHandler } from "react";
 
-/**
- * Example of a post form Server Side Rendering (SSR) component
- * @returns
- */
+
 export default function PostForm() {
     const { data, setData, post, processing, errors } = useForm({
         title: "",

@@ -20,8 +20,7 @@ export default function Users({ users }: { users: User[] }) {
                             image={user?.image}
                             username={user?.username}
                             created_at={""}
-                            updated_at={""}
-                        />
+                            updated_at={""} posts={[]}                        />
                     </Link>
                 ))}
             </div>
