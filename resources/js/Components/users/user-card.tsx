@@ -1,7 +1,7 @@
 import { Mail } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { User } from "../../types/index";
+import { User } from "@/types/index";
 
 
 export default function UserCard({ name, email, role, image }: User) {

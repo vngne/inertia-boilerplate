@@ -88,7 +88,6 @@ export default function Posts({ posts }: { posts: Post[] }) {
                                         )}
                                     </div>
                                 </CardFooter>
-
                         </Card>
                     ))}
                 </div>
