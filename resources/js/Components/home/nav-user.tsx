@@ -100,7 +100,7 @@ export function NavUser({
                         </DropdownMenuItem>
                         <DropdownMenuItem>
                             <UserCog />
-                            <Link href="/account">Account</Link>
+                            <Link href="/dashboard/account">Account</Link>
                         </DropdownMenuItem>
                         <DropdownMenuSeparator />
                         <Link href={route("logout")} method="post">
