@@ -11,12 +11,21 @@ import RootLayout from "@/layout";
 import { Post } from "@/types";
 import { Head, Link, usePage } from "@inertiajs/react";
 import { ArrowRightIcon, CalendarIcon } from "lucide-react";
-import  DeletePostForm  from "./delete-post";
+import { DeletePostDialog } from "@/pages/posts/delete-post-dialog";
+import { useState } from "react";
 
 export default function Posts({ posts }: { posts: Post[] }) {
     const auth = usePage().props.auth;
     console.log(posts);
+    const [selectedPost, setSelectedPost] = useState<Post | null>(null);
+    const [showDeleteDialog, setShowDeleteDialog] = useState(false);
 
+
+    const handleDelete = (post: Post) => {
+        setSelectedPost(post);
+        setShowDeleteDialog(true);
+        // setOpenDropdownId(null);
+    };
     return (
         <RootLayout>
             <Head title="Posts" />
@@ -83,7 +92,7 @@ export default function Posts({ posts }: { posts: Post[] }) {
                                                         Edit
                                                     </Button>
                                                 </Link>
-                                                <DeletePostForm post={post.slug} />
+                                                <Button variant="destructive" onClick={() => handleDelete(post)}>Delete</Button>
                                             </div>
                                         )}
                                     </div>
@@ -91,6 +100,11 @@ export default function Posts({ posts }: { posts: Post[] }) {
                         </Card>
                     ))}
                 </div>
+                <DeletePostDialog
+                    post={selectedPost}
+                    open={showDeleteDialog}
+                    onOpenChange={setShowDeleteDialog}
+                />
             </div>
         </RootLayout>
     );

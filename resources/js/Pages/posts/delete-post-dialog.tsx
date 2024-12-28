@@ -22,7 +22,7 @@ interface DeletePostProps {
 export function DeletePostDialog({ post, open, onOpenChange }: DeletePostProps) {
   const { delete: destroy, processing, reset } = useForm()
 
-  const handleDeleteConfirm: FormEventHandler = (e) => {
+  const DeletePost: FormEventHandler = (e) => {
     e.preventDefault()
     console.log("Deleting post:", post?.slug)
 
@@ -38,7 +38,7 @@ export function DeletePostDialog({ post, open, onOpenChange }: DeletePostProps) 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent>
-        <form onSubmit={handleDeleteConfirm}>
+        <form onSubmit={DeletePost}>
           <DialogHeader>
             <DialogTitle>Are you absolutely sure?</DialogTitle>
             <DialogDescription>

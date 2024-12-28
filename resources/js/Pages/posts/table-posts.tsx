@@ -21,7 +21,7 @@ import {
 } from "@/components/ui/table";
 import { Post } from "@/types";
 import DefaultLayout from "@/layouts/default-layout";
-import { DeletePostDialog } from "@/components/posts/delete-post-dialog";
+import { DeletePostDialog } from "@/pages/posts/delete-post-dialog";
 
 export default function PostTable({ posts }: { posts: Post[] }) {
     const [selectedPost, setSelectedPost] = useState<Post | null>(null);
