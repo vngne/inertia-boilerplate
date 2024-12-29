@@ -1,14 +1,30 @@
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogFooter,
+    DialogHeader,
+    DialogTitle,
+} from "@/components/ui/dialog";
+import Post from "../../types/index";
 import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import { useForm } from "@inertiajs/react";
+import { Textarea } from "@/components/ui/textarea";
 import SubmitButton from "@/components/stocks/submit-button";
-import RootLayout from "@/layout";
-import { Head, useForm } from "@inertiajs/react";
 import { FormEventHandler } from "react";
 
+interface PostDialogFormProps {
+    // post: Post | null
+    open: boolean;
+    onOpenChange: (open: boolean) => void;
+}
 
-export default function PostForm() {
+export default function PostFormDialog({
+    open,
+    onOpenChange,
+}: PostDialogFormProps) {
     const { data, setData, post, processing, errors } = useForm({
         title: "",
         slug: "",
@@ -19,15 +35,19 @@ export default function PostForm() {
         e.preventDefault();
         post(route("posts.index"));
     };
+
+
     return (
-        <RootLayout>
-            <Head title="Create Post" />
-            <Card className="w-full max-w-2xl mx-auto">
-                <CardHeader>
-                    <CardTitle>Create a New Blog Post</CardTitle>
-                </CardHeader>
-                <CardContent>
-                    <form onSubmit={submit} className="space-y-4">
+        <Dialog open={open} onOpenChange={onOpenChange}>
+            <DialogContent>
+                <form onSubmit={submit}>
+                    <DialogHeader>
+                        <DialogTitle>Create a new blog post</DialogTitle>
+                        <DialogDescription>
+                            Fill in the form below to create a new blog post.
+                        </DialogDescription>
+                    </DialogHeader>
+                    <div className="py-4 space-y-4">
                         <div className="space-y-2">
                             <Label htmlFor="title">Title</Label>
                             <Input
@@ -67,16 +87,24 @@ export default function PostForm() {
                                 className="min-h-[200px]"
                             />
                         </div>
-                        <div className="flex justify-between pt-4">
-                            <SubmitButton
-                                pending={processing}
-                                submitting={"Submit Post..."}
-                                submit={"Submit Post"}
-                            />
-                        </div>
-                    </form>
-                </CardContent>
-            </Card>
-        </RootLayout>
+                    </div>
+                    <DialogFooter>
+                        <Button
+                            type="button"
+                            variant="outline"
+                            onClick={() => onOpenChange(false)}
+                            // disabled={processing}
+                        >
+                            Cancel
+                        </Button>
+                        <SubmitButton
+                            pending={processing}
+                            submitting={"Submit Post..."}
+                            submit={"Submit Post"}
+                        />
+                    </DialogFooter>
+                </form>
+            </DialogContent>
+        </Dialog>
     );
 }

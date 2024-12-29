@@ -4,14 +4,15 @@ import {
     SidebarProvider,
     SidebarTrigger,
 } from "@/components/ui/sidebar";
-import { Suspense } from "react";
+import { Suspense, useState } from "react";
 import { Separator } from "@/components/ui/separator";
 import TablePosts from "../posts/table-posts";
 import { Post } from "@/types";
 import { Button } from "@/components/ui/button";
+import PostFormDialog from "../posts/post-from-dialog";
 
 export default function DashboardPosts({ posts }: { posts: Post[] }) {
-    console.log("ini dashboard post", posts);
+    const [showDeleteDialog, setShowDeleteDialog] = useState(false);
     return (
         <SidebarProvider>
             <AppSidebar />
@@ -28,7 +29,12 @@ export default function DashboardPosts({ posts }: { posts: Post[] }) {
                 <div className="flex justify-between mx-4">
                     <h1 className="text-xl font-semibold">Posts</h1>
                     {/* <AddPostDialog /> */}
-                    <Button> Add Post</Button>
+                    <Button onClick={() => {setShowDeleteDialog(true)}}> Add Post</Button>
+                    <PostFormDialog
+                    // post={selectedPost}
+                    open={showDeleteDialog}
+                    onOpenChange={setShowDeleteDialog}
+                />
                 </div>
                 <TablePosts posts={posts} />
             </SidebarInset>

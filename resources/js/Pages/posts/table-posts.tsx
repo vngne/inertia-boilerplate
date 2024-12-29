@@ -22,11 +22,19 @@ import {
 import { Post } from "@/types";
 import DefaultLayout from "@/layouts/default-layout";
 import { DeletePostDialog } from "@/pages/posts/delete-post-dialog";
+import EditPostFormDialog from "./edit-post-form-dialog";
 
 export default function PostTable({ posts }: { posts: Post[] }) {
     const [selectedPost, setSelectedPost] = useState<Post | null>(null);
     const [showDeleteDialog, setShowDeleteDialog] = useState(false);
+    const [showEditDialog, setShowEditDialog] = useState(false);
     const [openDropdownId, setOpenDropdownId] = useState<string | null>(null);
+
+    const handleEdit = (post: Post) => {
+        setSelectedPost(post);
+        setShowEditDialog(true);
+        setOpenDropdownId(null);
+    }
 
     const handleDelete = (post: Post) => {
         setSelectedPost(post);
@@ -99,6 +107,14 @@ export default function PostTable({ posts }: { posts: Post[] }) {
                                                     </Link>
                                                 </DropdownMenuItem>
                                                 <DropdownMenuItem
+                                                    onClick={() =>
+                                                        handleEdit(post)
+                                                    }
+                                                >
+                                                    <Trash className="w-4 h-4 mr-2" />
+                                                    Edit
+                                                </DropdownMenuItem>
+                                                <DropdownMenuItem
                                                     className="text-destructive hover:text-destructive"
                                                     onClick={() =>
                                                         handleDelete(post)
@@ -116,6 +132,12 @@ export default function PostTable({ posts }: { posts: Post[] }) {
                     </Table>
                 </div>
 
+                <EditPostFormDialog
+                    post={selectedPost}
+                    open={showEditDialog}
+                    onOpenChange={setShowEditDialog}
+
+                />
                 <DeletePostDialog
                     post={selectedPost}
                     open={showDeleteDialog}

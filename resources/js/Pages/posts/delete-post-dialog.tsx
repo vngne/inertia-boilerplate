@@ -24,7 +24,6 @@ export function DeletePostDialog({ post, open, onOpenChange }: DeletePostProps) 
 
   const DeletePost: FormEventHandler = (e) => {
     e.preventDefault()
-    console.log("Deleting post:", post?.slug)
 
     destroy(route("posts.destroy", { post: post?.slug }), {
       onSuccess: () => {
