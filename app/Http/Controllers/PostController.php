@@ -16,7 +16,7 @@ class PostController extends Controller
     {
         $posts = Post::with('user')
             ->latest()
-            ->get();
+            ->paginate(9);
 
         return Inertia::render('posts/index', [
             'posts' => $posts,
@@ -27,8 +27,10 @@ class PostController extends Controller
     public function table()
     {
         $posts = Post::with('user')
+            ->where('user_id', auth('web')->id())
             ->latest()
-            ->get();
+            // ->get();
+            ->paginate(8);
 
         return Inertia::render('dashboard/posts', [
             'posts' => $posts

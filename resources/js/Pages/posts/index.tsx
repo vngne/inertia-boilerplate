@@ -13,10 +13,11 @@ import { Head, Link, usePage } from "@inertiajs/react";
 import { ArrowRightIcon, CalendarIcon } from "lucide-react";
 import { DeletePostDialog } from "@/pages/posts/delete-post-dialog";
 import { useState } from "react";
+import Paginate from "@/components/stocks/paginate";
 
-export default function Posts({ posts }: { posts: Post[] }) {
+export default function Posts({ posts }: { posts: any }) {
     const auth = usePage().props.auth;
-    console.log(posts);
+    console.log('index posts', posts);
     const [selectedPost, setSelectedPost] = useState<Post | null>(null);
     const [showDeleteDialog, setShowDeleteDialog] = useState(false);
 
@@ -32,7 +33,7 @@ export default function Posts({ posts }: { posts: Post[] }) {
             <div>
                 <h1 className="mb-8 text-3xl font-bold">
                     <div className="flex flex-row items-center justify-start gap-4">
-                        All Post ({posts.length})
+                        All Post ({posts.data.length})
                         {auth.user && (
                             <Link href="/posts/create">
                                 <Button>Create</Button>
@@ -41,7 +42,7 @@ export default function Posts({ posts }: { posts: Post[] }) {
                     </div>
                 </h1>
                 <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                    {posts.map((post) => (
+                    {posts.data.map((post: Post) => (
                         <Card key={post.id}>
                             <Link href={`/posts/${post.slug}`}>
                                 <CardHeader>
@@ -106,6 +107,7 @@ export default function Posts({ posts }: { posts: Post[] }) {
                     onOpenChange={setShowDeleteDialog}
                 />
             </div>
+            <Paginate links={posts.links}/>
         </RootLayout>
     );
 }
