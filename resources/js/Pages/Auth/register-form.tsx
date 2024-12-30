@@ -1,4 +1,5 @@
 import RegisterSide from "@/components/auth/register-side";
+import LabelError from "@/components/stocks/label-error";
 import SubmitButton from "@/components/stocks/submit-button";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Input } from "@/components/ui/input";
@@ -68,14 +69,12 @@ export default function RegisterForm() {
                                             }
                                             required
                                         />
-                                        {errors.name && (
-                                            <Label className="text-red-500">
-                                                {errors.name}
-                                            </Label>
-                                        )}
+                                        <LabelError value={errors.name || ""} />
                                     </div>
                                     <div className="grid gap-2">
-                                        <Label htmlFor="username">Username</Label>
+                                        <Label htmlFor="username">
+                                            Username
+                                        </Label>
                                         <Input
                                             id="username"
                                             name="username"
@@ -84,15 +83,16 @@ export default function RegisterForm() {
                                             value={data.username}
                                             autoComplete="username"
                                             onChange={(e) =>
-                                                setData("username", e.target.value)
+                                                setData(
+                                                    "username",
+                                                    e.target.value
+                                                )
                                             }
                                             required
                                         />
-                                        {errors.username && (
-                                            <Label className="text-red-500">
-                                                {errors.username}
-                                            </Label>
-                                        )}
+                                        <LabelError
+                                            value={errors.username || ""}
+                                        />
                                     </div>
                                     <div className="grid gap-2">
                                         <Label htmlFor="email">Email</Label>
@@ -108,11 +108,9 @@ export default function RegisterForm() {
                                             }
                                             required
                                         />
-                                        {errors.email && (
-                                            <Label className="text-red-500">
-                                                {errors.email}
-                                            </Label>
-                                        )}
+                                        <LabelError
+                                            value={errors.email || ""}
+                                        />
                                     </div>
                                     <div className="grid gap-2">
                                         <Label htmlFor="password">
@@ -132,11 +130,9 @@ export default function RegisterForm() {
                                             }
                                             required
                                         />
-                                        {errors.password && (
-                                            <Label className="text-red-500">
-                                                {errors.password}
-                                            </Label>
-                                        )}
+                                        <LabelError
+                                            value={errors.password || ""}
+                                        />
                                     </div>
                                     <div className="grid gap-2">
                                         <Label htmlFor="confirmPassword">
@@ -156,11 +152,8 @@ export default function RegisterForm() {
                                             }
                                             required
                                         />
-                                        {errors.password_confirmation && (
-                                            <Label className="text-red-500">
-                                                {errors.password_confirmation}
-                                            </Label>
-                                        )}
+                                        <LabelError
+                                            value={errors.password_confirmation ||""}/>
                                     </div>
                                     <SubmitButton
                                         pending={processing}

@@ -13,6 +13,8 @@ import { Label } from "@/components/ui/label";
 import { Head, Link, useForm } from "@inertiajs/react";
 import { TriangleAlert } from "lucide-react";
 import { FormEventHandler } from "react";
+import { InputPassword } from "@/components/stocks/input-password";
+import LabelError from "@/components/stocks/label-error";
 
 export default function LoginForm({
     status,
@@ -69,11 +71,7 @@ export default function LoginForm({
                                         setData("email", e.target.value)
                                     }
                                 />
-                                {errors.email && (
-                                    <Label className="text-red-500">
-                                        {errors.email}
-                                    </Label>
-                                )}
+                                <LabelError value={errors.email || ""} />
                             </div>
                             <div className="grid gap-2">
                                 <div className="flex items-center">
@@ -85,20 +83,13 @@ export default function LoginForm({
                                         Forgot your password?
                                     </Link>
                                 </div>
-                                <Input
-                                    id="password"
-                                    type="password"
-                                    name="password"
+                                <InputPassword
                                     value={data.password}
                                     onChange={(e) =>
                                         setData("password", e.target.value)
                                     }
                                 />
-                                {errors.password && (
-                                    <Label className="text-red-500">
-                                        {errors.password}
-                                    </Label>
-                                )}
+                                <LabelError value={errors.password || ""} />
                             </div>
                             <SubmitButton
                                 pending={processing}
