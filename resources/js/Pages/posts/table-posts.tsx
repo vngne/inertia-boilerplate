@@ -30,6 +30,8 @@ export default function PostTable({ posts }: { posts: Post[] }) {
     const [showEditDialog, setShowEditDialog] = useState(false);
     const [openDropdownId, setOpenDropdownId] = useState<string | null>(null);
 
+    console.log('ini table',posts);
+
     const handleEdit = (post: Post) => {
         setSelectedPost(post);
         setShowEditDialog(true);

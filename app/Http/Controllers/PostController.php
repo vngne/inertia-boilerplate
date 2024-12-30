@@ -24,7 +24,7 @@ class PostController extends Controller
     }
 
 
-    public function dashboardPosts()
+    public function table()
     {
         $posts = Post::with('user')
             ->latest()

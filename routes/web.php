@@ -31,7 +31,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         })->name('dashboard');
 
         // Posts
-        Route::get('/posts', [PostController::class, 'dashboardPosts'])->name('dashboard.posts');
+        Route::get('/posts', [PostController::class, 'table'])->name('posts.table');
 
         // Account
         Route::get('/account', [AccountController::class, 'edit'])->name('account.edit');
@@ -40,7 +40,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     });
 
     // Posts
-    Route::resource('posts', PostController::class)->except('show', 'index', 'edit', 'destroy');
+    Route::resource('posts', PostController::class)->except('show', 'index', 'edit', 'destroy','table');
     Route::get('/posts/{post:slug}/edit', [PostController::class, 'edit'])->name('posts.edit');
     Route::delete('/posts/{post:slug}', [PostController::class, 'destroy'])->name('posts.destroy');
 

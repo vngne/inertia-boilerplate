@@ -7,7 +7,6 @@ import {
     DialogHeader,
     DialogTitle,
 } from "@/components/ui/dialog";
-import Post from "../../types/index";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { useForm } from "@inertiajs/react";
@@ -40,7 +39,7 @@ export default function PostFormDialog({
     return (
         <Dialog open={open} onOpenChange={onOpenChange}>
             <DialogContent>
-                <form onSubmit={submit}>
+                <form onSubmit={submit} method="POST">
                     <DialogHeader>
                         <DialogTitle>Create a new blog post</DialogTitle>
                         <DialogDescription>

@@ -4,7 +4,7 @@ import {
     SidebarProvider,
     SidebarTrigger,
 } from "@/components/ui/sidebar";
-import { Suspense, useState } from "react";
+import { useState } from "react";
 import { Separator } from "@/components/ui/separator";
 import TablePosts from "../posts/table-posts";
 import { Post } from "@/types";
