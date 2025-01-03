@@ -69,7 +69,7 @@ export default function RegisterForm() {
                                             }
                                             required
                                         />
-                                        <LabelError value={errors.name || ""} />
+                                        <LabelError value={errors.name} />
                                     </div>
                                     <div className="grid gap-2">
                                         <Label htmlFor="username">
@@ -91,7 +91,7 @@ export default function RegisterForm() {
                                             required
                                         />
                                         <LabelError
-                                            value={errors.username || ""}
+                                            value={errors.username}
                                         />
                                     </div>
                                     <div className="grid gap-2">
@@ -109,7 +109,7 @@ export default function RegisterForm() {
                                             required
                                         />
                                         <LabelError
-                                            value={errors.email || ""}
+                                            value={errors.email}
                                         />
                                     </div>
                                     <div className="grid gap-2">
@@ -131,7 +131,7 @@ export default function RegisterForm() {
                                             required
                                         />
                                         <LabelError
-                                            value={errors.password || ""}
+                                            value={errors.password}
                                         />
                                     </div>
                                     <div className="grid gap-2">
@@ -153,14 +153,13 @@ export default function RegisterForm() {
                                             required
                                         />
                                         <LabelError
-                                            value={errors.password_confirmation ||""}/>
+                                            value={errors.password_confirmation}/>
                                     </div>
                                     <SubmitButton
                                         pending={processing}
                                         submitting={"Registering..."}
                                         submit={"Register"}
                                     />
-                                    {/* <Button>Register</Button> */}
                                 </div>
                             </div>
                         </form>

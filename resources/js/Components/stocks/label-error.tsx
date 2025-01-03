@@ -6,10 +6,10 @@ import { Label } from "../ui/label";
  * @returns
  * @example
  * ```tsx
- * <LabelError value={errors.email || ""} />
+ * <LabelError value={errors.email} />
  * ```
  */
-export default function LabelError({value}: {value: string}) {
+export default function LabelError({value}: {value?: string}) {
   return (
     <div>
       {value ? (
