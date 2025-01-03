@@ -7,7 +7,6 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-
 // Home
 Route::get('/', function () {
     return Inertia::render('home', [
@@ -18,7 +17,6 @@ Route::get('/', function () {
         'phpVersion' => PHP_VERSION,
     ]);
 });
-
 
 // Middleware Auth and Verified
 Route::middleware(['auth', 'verified'])->group(function () {
@@ -40,7 +38,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     });
 
     // Posts
-    Route::resource('posts', PostController::class)->except('show', 'index', 'edit', 'destroy','table');
+    Route::resource('posts', PostController::class)->except('show', 'index', 'edit', 'destroy', 'table');
     Route::get('/posts/{post:slug}/edit', [PostController::class, 'edit'])->name('posts.edit');
     Route::delete('/posts/{post:slug}', [PostController::class, 'destroy'])->name('posts.destroy');
 
@@ -54,8 +52,4 @@ Route::get('users/{user:username}', [UserController::class, 'show'])->name('user
 Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
 Route::get('/posts/{post:slug}', [PostController::class, 'show'])->name('posts.show');
 
-
-require __DIR__ . '/auth.php';
-
-
-
+require __DIR__.'/auth.php';

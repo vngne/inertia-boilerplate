@@ -6,8 +6,8 @@ use App\Http\Requests\PostRequest;
 use App\Models\Post;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Inertia\Inertia;
 use Illuminate\Support\Facades\Storage;
+use Inertia\Inertia;
 
 class PostController extends Controller
 {
@@ -25,7 +25,6 @@ class PostController extends Controller
         ]);
     }
 
-
     public function table()
     {
         $posts = Post::with('user')
@@ -35,7 +34,7 @@ class PostController extends Controller
             ->paginate(8);
 
         return Inertia::render('dashboard/posts', [
-            'posts' => $posts
+            'posts' => $posts,
         ]);
     }
 
@@ -56,9 +55,8 @@ class PostController extends Controller
         $file = $request->file('thumbnail');
         $request->user()->posts()->create([
             ...$request->validated(),
-            ...['thumbnail' => $file->store('images/posts', 'public')]
+            ...['thumbnail' => $file->store('images/posts', 'public')],
         ]);
-
 
         // Create the post
         // $thumbnail = $request->file('thumbnail')
@@ -115,7 +113,7 @@ class PostController extends Controller
         $post->update([
             'title' => $request->title,
             'content' => $request->content,
-            ]);
+        ]);
         // Validate the request
         // $request->validate([
         //     'title' => ['required', 'string', 'max:255'],
