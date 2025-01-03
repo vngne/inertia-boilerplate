@@ -6,17 +6,18 @@ import SubmitButton from "@/components/stocks/submit-button";
 import RootLayout from "@/layout";
 import { Head, useForm } from "@inertiajs/react";
 import { FormEventHandler } from "react";
+import LabelError from "@/components/stocks/label-error";
 
 export default function PostForm() {
     const { data, setData, post, processing, errors } = useForm({
         title: "",
-        slug: "",
         thumbnail: null as File | null,
         content: "",
     });
 
     const submit: FormEventHandler = (e) => {
         e.preventDefault();
+        console.log(data);
         post(route("posts.index"));
     };
     return (
@@ -27,7 +28,7 @@ export default function PostForm() {
                     <CardTitle>Create a New Blog Post</CardTitle>
                 </CardHeader>
                 <CardContent>
-                    <form onSubmit={submit} className="space-y-4" encType="multipart/form-data">
+                    <form onSubmit={submit} className="space-y-4" encType="multipart/form-data" noValidate>
                         <div className="space-y-2">
                             <Label htmlFor="title">Title</Label>
                             <Input
@@ -40,18 +41,7 @@ export default function PostForm() {
                                 }
                                 required
                             />
-                        </div>
-                        <div className="space-y-2">
-                            <Label htmlFor="slug">Slug</Label>
-                            <Input
-                                id="slug"
-                                name="slug"
-                                placeholder="Enter tags and press Enter"
-                                value={data.slug}
-                                onChange={(e) =>
-                                    setData("slug", e.target.value)
-                                }
-                            />
+                            <LabelError value={errors.title}/>
                         </div>
                         <div className="space-y-2">
                             <Label htmlFor="thumbnail">Thumnail</Label>
@@ -64,6 +54,7 @@ export default function PostForm() {
                                     setData("thumbnail", e.target.files ? e.target.files[0] : null)
                                 }
                             />
+                            <LabelError value={errors.thumbnail}/>
                         </div>
                         <div className="space-y-2">
                             <Label htmlFor="content">Content</Label>
@@ -78,6 +69,7 @@ export default function PostForm() {
                                 required
                                 className="min-h-[200px]"
                             />
+                            <LabelError value={errors.content}/>
                         </div>
                         <div className="flex justify-between pt-4">
                             <SubmitButton

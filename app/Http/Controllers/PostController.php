@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PostRequest;
 use App\Models\Post;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -48,31 +50,30 @@ class PostController extends Controller
     /**
      * Store a newly created post in storage.
      */
-    public function store(Request $request): RedirectResponse
+    public function store(PostRequest $request): RedirectResponse
     {
-        // Validate the request
-        $request->validate([
-            'title' => ['required', 'string', 'max:255'],
-            'slug' => ['required', 'string', 'max:255'],
-            'thumbnail' => ['nullable', 'image', 'mimes:jpeg,png,jpg,svg', 'max:2048'],
-            'content' => ['required', 'string'],
+
+        $file = $request->file('thumbnail');
+        $request->user()->posts()->create([
+            ...$request->validated(),
+            ...['thumbnail' => $file->store('images/posts', 'public')]
         ]);
+
 
         // Create the post
+        // $thumbnail = $request->file('thumbnail')
+        //     ? $request->file('thumbnail')->store('images/posts', 'public')
+        //     : null;
 
-        $thumbnail = $request->file('thumbnail')
-            ? $request->file('thumbnail')->store('images/posts', 'public')
-            : null;
+        // Post::create([
+        //     'title' => $request->title,
+        //     'slug' => $request->slug,
+        //     'thumbnail' => $thumbnail,
+        //     'content' => $request->content,
+        //     'user_id' => auth('web')->id(),
+        // ]);
 
-        Post::create([
-            'title' => $request->title,
-            'slug' => $request->slug,
-            'thumbnail' => $thumbnail,
-            'content' => $request->content,
-            'user_id' => auth('web')->id(),
-        ]);
-
-        dd($request->all(), $request->file('thumbnail'));
+        // dd($request->all(), $request->file('thumbnail'));
         return redirect()->route('posts.index');
     }
 
@@ -108,21 +109,32 @@ class PostController extends Controller
     /**
      * Update the specified post in storage.
      */
-    public function update(Request $request, Post $post): RedirectResponse
+    public function update(PostRequest $request, Post $post): RedirectResponse
     {
-        // Validate the request
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'slug' => 'required|string|max:255',
-            'content' => 'required|string',
-        ]);
 
-        // Update the post
         $post->update([
             'title' => $request->title,
-            'slug' => $request->slug,
             'content' => $request->content,
-        ]);
+            ]);
+        // Validate the request
+        // $request->validate([
+        //     'title' => ['required', 'string', 'max:255'],
+        //     'slug' => ['required', 'string', 'max:255'],
+        //     'thumbnail' => ['nullable', 'image', 'mimes:jpeg,png,jpg,svg', 'max:2048'],
+        //     'content' => ['required', 'string'],
+        // ]);
+
+        // $thumbnail = $request->file('thumbnail')
+        //     ? $request->file('thumbnail')->store('images/posts', 'public')
+        //     : null;
+
+        // Update the post
+        // $post->update([
+        //     'title' => $request->title,
+        //     'slug' => $request->slug,
+        //     'thumbnail' => $thumbnail,
+        //     'content' => $request->content,
+        // ]);
 
         return redirect()->route('posts.index');
     }
@@ -135,6 +147,11 @@ class PostController extends Controller
         // Check if the authenticated user is the owner of the post
         if ($post->user_id !== auth('web')->id()) {
             abort(403, 'Unauthorized');
+        }
+
+        // Delete file if it exists
+        if ($post->thumbnail) {
+            Storage::disk('public')->delete($post->thumbnail);
         }
 
         // Delete the post

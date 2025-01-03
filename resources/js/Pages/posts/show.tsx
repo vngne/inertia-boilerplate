@@ -23,7 +23,7 @@ export default function Post({ post }: { post: Post }) {
                         </span>
                     </div>
                     <Link href={`/users/${post.user.username}`}>
-                        <div className="relative flex items-center w-full h-12 rounded-lg text-muted-foreground hover:bg-zinc-50 hover:text-teal-700">
+                        <div className="relative flex items-center w-full h-12 rounded-lg text-muted-foreground hover:bg-zinc-50 hover:text-primary">
                             <div className="flex mx-4">
                             <Avatar className="w-6 h-6 me-2">
                                 <AvatarImage
