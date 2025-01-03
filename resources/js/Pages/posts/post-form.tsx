@@ -7,11 +7,11 @@ import RootLayout from "@/layout";
 import { Head, useForm } from "@inertiajs/react";
 import { FormEventHandler } from "react";
 
-
 export default function PostForm() {
     const { data, setData, post, processing, errors } = useForm({
         title: "",
         slug: "",
+        thumbnail: null as File | null,
         content: "",
     });
 
@@ -27,7 +27,7 @@ export default function PostForm() {
                     <CardTitle>Create a New Blog Post</CardTitle>
                 </CardHeader>
                 <CardContent>
-                    <form onSubmit={submit} className="space-y-4">
+                    <form onSubmit={submit} className="space-y-4" encType="multipart/form-data">
                         <div className="space-y-2">
                             <Label htmlFor="title">Title</Label>
                             <Input
@@ -50,6 +50,18 @@ export default function PostForm() {
                                 value={data.slug}
                                 onChange={(e) =>
                                     setData("slug", e.target.value)
+                                }
+                            />
+                        </div>
+                        <div className="space-y-2">
+                            <Label htmlFor="thumbnail">Thumnail</Label>
+                            <Input
+                                className="h-20 border border-dashed focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                                id="thumbnail"
+                                name="thumbnail"
+                                type="file"
+                                onChange={(e) =>
+                                    setData("thumbnail", e.target.files ? e.target.files[0] : null)
                                 }
                             />
                         </div>

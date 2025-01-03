@@ -2,7 +2,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { CalendarIcon } from "lucide-react";
 import type { Post } from "@/types";
 import RootLayout from "@/layout";
-import { Head } from "@inertiajs/react";
+import { Head, Link } from "@inertiajs/react";
 
 export default function Post({ post }: { post: Post }) {
     console.log("ini data dari post", post);
@@ -22,19 +22,31 @@ export default function Post({ post }: { post: Post }) {
                                 .join("/")}
                         </span>
                     </div>
-                    <div className="flex items-center text-muted-foreground">
-                        <Avatar className="w-6 h-6 me-2">
-                            <AvatarImage
-                                src={post.user.image}
-                                alt={post.user.name}
-                            />
-                            <AvatarFallback>
-                                {post.user.name.slice(0, 2).toUpperCase()}
-                            </AvatarFallback>
-                        </Avatar>
-                        <span>{post.user.name}</span>
-                    </div>
+                    <Link href={`/users/${post.user.username}`}>
+                        <div className="relative flex items-center w-full h-12 rounded-lg text-muted-foreground hover:bg-zinc-50 hover:text-teal-700">
+                            <div className="flex mx-4">
+                            <Avatar className="w-6 h-6 me-2">
+                                <AvatarImage
+                                    src={post.user.image}
+                                    alt={post.user.name}
+                                />
+                                <AvatarFallback>
+                                    {post.user.name.slice(0, 2).toUpperCase()}
+                                </AvatarFallback>
+                            </Avatar>
+                            <p>{post.user.name}</p>
+                            </div>
+
+                        </div>
+                    </Link>
                 </div>
+                {post.thumbnail && (
+                    <img
+                        src={`/storage/${post.thumbnail}`}
+                        alt={post.title}
+                        className="object-cover w-full mb-6 rounded-lg h-96"
+                    />
+                )}
                 <div className="mb-12 prose prose-lg max-w-none">
                     {post.content}{" "}
                 </div>

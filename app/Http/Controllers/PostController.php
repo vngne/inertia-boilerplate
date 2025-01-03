@@ -52,19 +52,27 @@ class PostController extends Controller
     {
         // Validate the request
         $request->validate([
-            'title' => 'required|string|max:255',
-            'slug' => 'required|string|max:255',
-            'content' => 'required|string',
+            'title' => ['required', 'string', 'max:255'],
+            'slug' => ['required', 'string', 'max:255'],
+            'thumbnail' => ['nullable', 'image', 'mimes:jpeg,png,jpg,svg', 'max:2048'],
+            'content' => ['required', 'string'],
         ]);
 
         // Create the post
+
+        $thumbnail = $request->file('thumbnail')
+            ? $request->file('thumbnail')->store('images/posts', 'public')
+            : null;
+
         Post::create([
             'title' => $request->title,
             'slug' => $request->slug,
+            'thumbnail' => $thumbnail,
             'content' => $request->content,
             'user_id' => auth('web')->id(),
         ]);
 
+        dd($request->all(), $request->file('thumbnail'));
         return redirect()->route('posts.index');
     }
 

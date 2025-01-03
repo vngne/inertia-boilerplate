@@ -74,15 +74,6 @@ export default function LoginForm({
                                 <LabelError value={errors.email || ""} />
                             </div>
                             <div className="grid gap-2">
-                                <div className="flex items-center">
-                                    <Label htmlFor="password">Password</Label>
-                                    <Link
-                                        href="/forgot-password"
-                                        className="inline-block ml-auto text-sm underline"
-                                    >
-                                        Forgot your password?
-                                    </Link>
-                                </div>
                                 <InputPassword
                                     value={data.password}
                                     onChange={(e) =>
@@ -90,6 +81,14 @@ export default function LoginForm({
                                     }
                                 />
                                 <LabelError value={errors.password || ""} />
+                            </div>
+                            <div className="flex items-center">
+                                <Link
+                                    href="/forgot-password"
+                                    className="inline-block ml-auto text-sm underline"
+                                >
+                                    Forgot your password?
+                                </Link>
                             </div>
                             <SubmitButton
                                 pending={processing}

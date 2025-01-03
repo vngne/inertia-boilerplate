@@ -15,6 +15,7 @@ export interface Post {
     id: number;
     user_id: number;
     title: string;
+    thumbnail: string;
     content: string;
     slug: string;
     created_at: string;
