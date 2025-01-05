@@ -21,10 +21,11 @@ class PostRequest extends FormRequest
      */
     public function rules(): array
     {
+
         return [
-            'title' => ['required', 'string', 'max:255'],
+            'title' => [$this->method() === 'POST' ? 'required' : 'nullable' ,'string', 'max:255'],
             'thumbnail' => [$this->method() === 'POST' ? 'required' : 'nullable', 'image', 'mimes:jpeg,png,jpg,svg', 'max:2048'],
-            'content' => ['required', 'string'],
+            'content' => [$this->method() === 'POST' ?  'required' : 'nullable', 'string'],
         ];
     }
 }

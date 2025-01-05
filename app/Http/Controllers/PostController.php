@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\PostRequest;
 use App\Models\Post;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 
@@ -25,6 +24,9 @@ class PostController extends Controller
         ]);
     }
 
+    /**
+     * Display a post listing for the authenticated user.
+     */
     public function table()
     {
         $posts = Post::with('user')
@@ -58,20 +60,6 @@ class PostController extends Controller
             ...['thumbnail' => $file->store('images/posts', 'public')],
         ]);
 
-        // Create the post
-        // $thumbnail = $request->file('thumbnail')
-        //     ? $request->file('thumbnail')->store('images/posts', 'public')
-        //     : null;
-
-        // Post::create([
-        //     'title' => $request->title,
-        //     'slug' => $request->slug,
-        //     'thumbnail' => $thumbnail,
-        //     'content' => $request->content,
-        //     'user_id' => auth('web')->id(),
-        // ]);
-
-        // dd($request->all(), $request->file('thumbnail'));
         return redirect()->route('posts.index');
     }
 
@@ -110,29 +98,19 @@ class PostController extends Controller
     public function update(PostRequest $request, Post $post): RedirectResponse
     {
 
+        $file = $request->file('thumbnail');
+
+        // Check if a new thumbnail is uploaded
+        if ($file) {
+            // Store the new thumbnail
+            $post->thumbnail = $file->store('images/posts', 'public');
+        }
+
+        // Update the post with validated data
         $post->update([
-            'title' => $request->title,
-            'content' => $request->content,
+            ...$request->validated(),
+            'thumbnail' => $post->thumbnail,
         ]);
-        // Validate the request
-        // $request->validate([
-        //     'title' => ['required', 'string', 'max:255'],
-        //     'slug' => ['required', 'string', 'max:255'],
-        //     'thumbnail' => ['nullable', 'image', 'mimes:jpeg,png,jpg,svg', 'max:2048'],
-        //     'content' => ['required', 'string'],
-        // ]);
-
-        // $thumbnail = $request->file('thumbnail')
-        //     ? $request->file('thumbnail')->store('images/posts', 'public')
-        //     : null;
-
-        // Update the post
-        // $post->update([
-        //     'title' => $request->title,
-        //     'slug' => $request->slug,
-        //     'thumbnail' => $thumbnail,
-        //     'content' => $request->content,
-        // ]);
 
         return redirect()->route('posts.index');
     }

@@ -10,4 +10,9 @@ class PostObeserver
     {
         $post->slug = str()->slug($post->title);
     }
+
+    public function updating(Post $post)
+    {
+        $post->slug = str()->slug($post->title);
+    }
 }

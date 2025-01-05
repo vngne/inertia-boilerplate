@@ -52,9 +52,10 @@ export default function EditPostForm({ post }: { post: Post }) {
                                 id="thumbnail"
                                 name="thumbnail"
                                 type="file"
-                                onChange={(e) =>
-                                    setData("thumbnail", e.target.files ? e.target.files[0] : null)
-                                }
+                                onChange={(e) => {
+                                    const file = e.target.files ? e.target.files[0] : null;
+                                    setData("thumbnail", file);
+                                }}
                             />
                             <LabelError value={errors.thumbnail}/>
                         </div>
