@@ -38,8 +38,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     });
 
     // Posts
-    Route::resource('posts', PostController::class)->except('show', 'index', 'edit', 'destroy', 'table');
+    Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');
+    Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
     Route::get('/posts/{post:slug}/edit', [PostController::class, 'edit'])->name('posts.edit');
+    Route::post('/posts{post}', [PostController::class, 'update'])->name('posts.update');
     Route::delete('/posts/{post:slug}', [PostController::class, 'destroy'])->name('posts.destroy');
 
 });

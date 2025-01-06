@@ -88,7 +88,7 @@ class PostController extends Controller
         }
 
         return Inertia::render('posts/edit-post-form', [
-            'post' => $post,
+            'postParams' => $post,
         ]);
     }
 
@@ -97,19 +97,17 @@ class PostController extends Controller
      */
     public function update(PostRequest $request, Post $post): RedirectResponse
     {
-
-        $file = $request->file('thumbnail');
-
-        // Check if a new thumbnail is uploaded
-        if ($file) {
-            // Store the new thumbnail
-            $post->thumbnail = $file->store('images/posts', 'public');
+        if ($request->hasFile('thumbnail')) {
+           Storage::delete($post->thumbnail);
+            $file = $request->file('thumbnail');
+        } else {
+            $file = $post->thumbnail;
         }
 
-        // Update the post with validated data
         $post->update([
-            ...$request->validated(),
-            'thumbnail' => $post->thumbnail,
+            'title' => $request->title,
+            'content' => $request->content,
+            'thumbnail' => $file->store('images/posts', 'public'),
         ]);
 
         return redirect()->route('posts.index');

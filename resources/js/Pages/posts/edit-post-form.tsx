@@ -9,18 +9,18 @@ import { Head, useForm } from "@inertiajs/react";
 import { FormEventHandler } from "react";
 import LabelError from "@/components/stocks/label-error";
 
-export default function EditPostForm({ post }: { post: Post }) {
-    const { data, setData, put, processing, errors } = useForm({
-        title: post.title,
-        slug: post.slug,
+export default function EditPostForm({ postParams }: { postParams: Post }) {
+    const { data, setData, post, processing, errors } = useForm({
+        title: postParams.title,
+        slug: postParams.slug,
         thumbnail: null as File | null,
-        content: post.content,
+        content: postParams.content,
     });
 
     const submit: FormEventHandler = (e) => {
         e.preventDefault();
         console.log(data);
-        put(route("posts.update", post.id));
+        post(route("posts.update", postParams.id));
     };
     return (
         <RootLayout>
