@@ -5,7 +5,7 @@
 First, run the development server:
 
 ```bash
-git clone https://github.com/ekovegeance/laravel-templates.git
+https://github.com/ekovegeance/inertia-boilerplate
 composer install && npm install && npm run dev
 ```
 Configure your local environment
