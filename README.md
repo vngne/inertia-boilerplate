@@ -6,8 +6,12 @@ First, run the development server:
 
 ```bash
 git clone https://github.com/ekovegeance/inertia-boilerplate && cd inertia-boilerplate
-composer install && npm install && npm run dev
+composer install && npm install
 ```
+```bash
+php artisan serve && npm run dev
+```
+
 Configure your local environment
 ```bash
 cp .env.local .env
