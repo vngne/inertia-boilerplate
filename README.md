@@ -16,6 +16,9 @@ Configure your local environment
 ```bash
 cp .env.local .env
 ```
+```bash
+php artisan key:generate
+```
 Migrate database
 ```bash
 php artisan migrate --seed
