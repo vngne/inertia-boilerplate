@@ -4,7 +4,7 @@ export default function RegisterSide() {
     <div className="hidden lg:block">
     <div className="flex flex-col justify-between h-full p-8 bg-zinc-100">
       <div className="space-y-6">
-        <Command className="text-red-500 " />
+        <Command className="text-primary " />
         <h2 className="text-2xl font-bold tracking-tight text-zinc-900">
           Join thousands of users
         </h2>

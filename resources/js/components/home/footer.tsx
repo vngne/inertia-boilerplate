@@ -1,4 +1,3 @@
-import { Link } from "@inertiajs/react"
 
 export default function Footer() {
   return (
@@ -7,23 +6,23 @@ export default function Footer() {
         <div className="flex flex-col items-center gap-4 px-8 md:flex-row md:gap-2 md:px-0">
           <p className="text-sm leading-loose text-center text-muted-foreground md:text-left">
             Built by{" "}
-            <Link
+            <a
               href="https://githbu.com/ekovegeance"
               target="_blank"
               rel="noreferrer"
               className="font-medium underline underline-offset-4"
             >
               ekovegeance
-            </Link>
+            </a>
             . The source code is available on{" "}
-            <Link
-              href="https://github.com/ekovegeance/Fullstack-Nextjs-Templates"
+            <a
+              href="https://github.com/ekovegeance/inertia-boilerplate"
               target="_blank"
               rel="noreferrer"
               className="font-medium underline underline-offset-4"
             >
               GitHub
-            </Link>
+            </a>
             .
           </p>
         </div>
