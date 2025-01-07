@@ -1,5 +1,5 @@
 
-![img](https://github.com/ekovegeance/laravel-templates/blob/main/laravel-template.png)
+![img](https://github.com/ekovegeance/inertia-boilerplate/blob/main/inertia-boilerplate.png)
 ## Getting Started
 
 First, run the development server:
