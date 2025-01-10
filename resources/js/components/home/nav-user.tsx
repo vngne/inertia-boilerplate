@@ -88,29 +88,31 @@ export function NavUser({
                             </div>
                         </DropdownMenuLabel>
                         <DropdownMenuSeparator />
-                        <DropdownMenuItem>
+                        <DropdownMenuItem asChild className="w-full cursor-pointer" >
+                            <Link href="/dashboard">
                             <LayoutDashboard />
-                            <Link href="/dashboard">Dashboard</Link>
+                            Dashboard
+                            </Link>
                         </DropdownMenuItem>
-                        <DropdownMenuItem asChild className="cursor-pointer ">
+                        <DropdownMenuItem asChild className="cursor-pointer">
                             <Link href={`users/${user.username}`}>
                                 <User />
                                 Profile
                             </Link>
                         </DropdownMenuItem>
-                        <DropdownMenuItem>
+                        <DropdownMenuItem asChild className="cursor-pointer">
+                            <Link href="/dashboard/account">
                             <UserCog />
-                            <Link href="/dashboard/account">Account</Link>
+                            Account
+                            </Link>
                         </DropdownMenuItem>
                         <DropdownMenuSeparator />
-                        <Link href={route("logout")} method="post">
-                            <DropdownMenuItem>
-                                <Button variant="ghost" className="-ms-4 text-destructive hover:text-destructive">
-                                    <LogOut />
-                                    Logout
-                                </Button>
-                            </DropdownMenuItem>
-                        </Link>
+                        <DropdownMenuItem asChild className="w-full cursor-pointer text-destructive">
+                            <Link href={route("logout")} method="post">
+                                <LogOut />
+                                Logout
+                            </Link>
+                        </DropdownMenuItem>
                     </DropdownMenuContent>
                 </DropdownMenu>
             </div>
