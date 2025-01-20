@@ -95,33 +95,30 @@ export function NavUser({
                         </DropdownMenuLabel>
                         <DropdownMenuSeparator />
                         <DropdownMenuGroup>
-                            <DropdownMenuItem>
+                            <DropdownMenuItem className="w-full cursor-pointer">
                                 <LayoutDashboard />
                                 Dashboard
                             </DropdownMenuItem>
-                            <DropdownMenuItem>
-                                <User />
+                            <DropdownMenuItem asChild className="w-full cursor-pointer">
                                 <Link href={`/users/${user?.username}`}>
+                                <User />
                                     Profile
                                 </Link>
                             </DropdownMenuItem>
-                            <DropdownMenuItem>
+                            <DropdownMenuItem asChild className="w-full cursor-pointer">
+                                <Link href="/account">
                                 <BadgeCheck />
-                                <Link href="/account">Account</Link>
+                                Account
+                                </Link>
                             </DropdownMenuItem>
                         </DropdownMenuGroup>
                         <DropdownMenuSeparator />
-                        <Link href={route("logout")} method="post">
-                            <DropdownMenuItem>
-                                <Button
-                                    variant="ghost"
-                                    className="-ms-4 text-destructive hover:text-destructive"
-                                >
-                                    <LogOut />
-                                    Log Out
-                                </Button>
-                            </DropdownMenuItem>
-                        </Link>
+                        <DropdownMenuItem asChild className="w-full cursor-pointer text-destructive">
+                            <Link href={route("logout")} method="post">
+                                <LogOut />
+                                Log Out
+                            </Link>
+                        </DropdownMenuItem>
                     </DropdownMenuContent>
                 </DropdownMenu>
             </SidebarMenuItem>

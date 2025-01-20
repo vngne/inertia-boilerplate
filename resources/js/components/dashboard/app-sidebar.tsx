@@ -165,7 +165,7 @@ console.log(auth);
           <SidebarMenuItem>
             <SidebarMenuButton size="lg" asChild>
               <Link href="/dashboard">
-                <div className="flex items-center justify-center rounded-lg aspect-square size-8 bg-primary text-primary-foreground">
+                <div className="flex items-center justify-center rounded-lg bg-primary aspect-square size-8 text-primary-foreground">
                   <Command className="size-4" />
                 </div>
                 <div className="grid flex-1 text-sm leading-tight text-left">
