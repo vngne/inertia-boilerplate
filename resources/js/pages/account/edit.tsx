@@ -5,11 +5,9 @@ import {
     SidebarTrigger,
 } from "@/components/ui/sidebar";
 import { Separator } from "@/components/ui/separator";
-// import Account from "@/components/dashboard/account";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import UpdateAccountInformation from "./partials/update-account-information-form";
-// import CVForm from "@/components/cv/cv-form";
 import { PageProps } from '@/types';
 import DeleteUserForm from './partials/delete-user-form';
 import UpdatePasswordForm from "./partials/update-password-form";

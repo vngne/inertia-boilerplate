@@ -8,10 +8,20 @@ import {
     PaginationPrevious,
 } from "@/components/ui/pagination";
 
+
 interface PaginationProps {
     links: { url: string | null; label: string; active: boolean }[];
 }
 
+/**
+ * Paginate component
+ * @param links
+ * @returns
+ * @example
+ * ```tsx
+ * <Paginate links={links} />
+ * ```
+ */
 export default function Paginate({ links }: PaginationProps) {
     if (!links || links.length === 0) return null;
 
