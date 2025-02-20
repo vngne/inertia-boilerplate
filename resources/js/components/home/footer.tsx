@@ -7,7 +7,7 @@ export default function Footer() {
           <p className="text-sm leading-loose text-center text-muted-foreground md:text-left">
             Built by{" "}
             <a
-              href="https://githbu.com/ekovegeance"
+              href="https://github.com/ekovegeance"
               target="_blank"
               rel="noreferrer"
               className="font-medium underline underline-offset-4"

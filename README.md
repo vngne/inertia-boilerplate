@@ -25,10 +25,11 @@ php artisan migrate --seed
 ```
 
 Open [http://localhost:8000](http://localhost:8000) with your browser to see the result.
+Use [Style Guide](https://ekovegeance.github.io/styleguide/coding/laravel) for Consistent Development 
 
 ## Tech Stack
 
-- [Laravel Documentation](https://laravel.com/docs/11.x) - learn about Laravel
+- [Laravel](https://laravel.com/docs/11.x) - learn about Laravel
 - [Eloquent ORM](https://laravel.com/docs/11.x/eloquent) - MySQL
 - [Auth Laravel Breeze](https://laravel.com/docs/11.x/starter-kits#laravel-breeze) - Inertia React
 - [Dependencies/ third party library](https://github.com/ekovegeance/laravel-templates/blob/main/package.json)
