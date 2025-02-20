@@ -1,0 +1,1 @@
+import{j as t}from"./app-CAHxE6qR.js";import{L as e}from"./label-GVIqKzPc.js";function o({value:r}){return t.jsx("div",{children:r?t.jsx(e,{className:"text-destructive",children:r}):null})}export{o as L};
