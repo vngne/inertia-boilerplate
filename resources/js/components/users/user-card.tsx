@@ -3,7 +3,14 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { User } from "@/types/index";
 
-
+/**
+ * UserCard component
+ * @param name
+ * @param email
+ * @param role
+ * @param image
+ * @returns
+ */
 export default function UserCard({ name, email, role, image }: User) {
     return (
         <Card className="w-full hover:bg-zinc-50">
